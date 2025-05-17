@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import logo from '../../../../assets/images/4 3.png'
+import Bg from '../../../../assets/images/ella-olsson-C1Q3qOTlegg-unsplash 1.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { set, useForm } from 'react-hook-form'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
@@ -31,7 +33,9 @@ export default function Login() {
   }
   return (
     <>
-    <div className="auth-container">
+    <div  style={{
+    backgroundImage: `url(${Bg})`
+  }} className="auth-container">
       <div className="container-fluid bg-overlay">
         <div className="row vh-100 justify-content-center align-items-center">
           <div className="col-md-5 bg-white rounded-3 px-5 py-4">

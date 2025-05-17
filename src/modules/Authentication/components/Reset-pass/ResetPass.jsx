@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import Bg from '../../../../assets/images/ella-olsson-C1Q3qOTlegg-unsplash 1.png'
 
 export default function ResetPass() {
    const navigate=useNavigate()
@@ -32,7 +33,9 @@ export default function ResetPass() {
   }
   return (
     <>
-     <div className="auth-container">
+     <div style={{
+         backgroundImage: `url(${Bg})`
+       }} className="auth-container">
           <div className="container-fluid bg-overlay">
             <div className="row vh-100 justify-content-center align-items-center">
               <div className="col-md-5 bg-white rounded-3 px-5 py-4">
