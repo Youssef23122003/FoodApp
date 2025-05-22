@@ -1,5 +1,4 @@
 import React from 'react'
-import header from '../../../../assets/images/header.png'
 import axios from 'axios'
 
 export default function Header({title,description,img}) {
