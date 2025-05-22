@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Sidebar from '../SideBar/SideBar'
+import SideBar from '../SideBar/SideBar'
 import Navbar from '../Navbar/Navbar'
 
 export default function MasterLayout({userName}) {
@@ -8,7 +8,7 @@ export default function MasterLayout({userName}) {
     <>
       <div className='d-flex'>
         <div className="">
-          <Sidebar/>
+          <SideBar/>
         </div>
         <div className="w-100">
           <Navbar userName={userName}/>
