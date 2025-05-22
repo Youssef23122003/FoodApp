@@ -237,7 +237,7 @@ export default function CategoriesList() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>Close</Button>
-          <Button variant="outline-danger" className='text-center' onClick={deletCategory}>{isLoading?(<><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span></>):'Delete'}</Button>
+          <Button variant="outline-danger"  onClick={deletCategory}>{isLoading?(<><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span></>):'Delete'}</Button>
         </Modal.Footer>
       </Modal>
 
