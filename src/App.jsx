@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,17 +22,32 @@ import CategoriesList from './modules/Catagories/components/CategoriesList/Categ
 import CategoryData from './modules/Catagories/components/CategoryData/CategoryData'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import UsersList from './modules/Users/components/UsersList/UsersList';
+import { jwtDecode } from 'jwt-decode';
+import ProtectedRoute from './modules/Shared/components/ProtectedRoute/ProtectedRoute';
+
 
 
 
 function App() {
+
+  let[loginData,setLoginData]=useState(null)
+  let[userName,setUserName]=useState(null)
+
+  const saveLogingData = () =>{
+    let encodedtoken = localStorage.getItem('token')
+    let decodedToken = jwtDecode(encodedtoken);
+    console.log(decodedToken);
+    setLoginData(decodedToken)
+    setUserName(decodedToken.userName)
+  }
+
   const routes=createBrowserRouter([{
     path:'',
     element:<AuthLayout/>,
     errorElement:<Notfound/>,
     children:[
-      {index:true, element:<Login/>},
-      {path:'login', element:<Login/>},
+      {index:true, element:<Login saveLogingData={saveLogingData}/>},
+      {path:'login', element:<Login saveLogingData={saveLogingData}/>},
       {path:'register', element:<Register/>},
       {path:'reset-pass', element:<ResetPass/>},
       {path:'verifiy-account', element:<VerifiyAccount/>},
@@ -41,7 +56,7 @@ function App() {
   },
   {
     path:'/dashboard',
-    element:<MasterLayout/>,
+    element: <ProtectedRoute loginData={loginData}><MasterLayout userName={userName}/></ProtectedRoute>,
     errorElement:<Notfound/>,
     children:[
       {index : true , element:<Dashboard/>},
@@ -54,6 +69,8 @@ function App() {
       {path: 'favs' , element:<FavList/>}
     ]
   }])
+
+  useEffect(()=>{if(localStorage.getItem('token')){saveLogingData()}},[])
 
   return (
     <>

@@ -1,29 +1,20 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Sidebar from '../Sidebar/Sidebar'
+import Sidebar from '../SideBar/SideBar'
 import Navbar from '../Navbar/Navbar'
-import Header from '../Header/Header'
 
-
-export default function MasterLayout() {
+export default function MasterLayout({userName}) {
   return (
     <>
-    <div className='d-flex'>
-      <div className="w-25 bg-info">
-        <Sidebar/>
+      <div className='d-flex'>
+        <div className="">
+          <Sidebar/>
+        </div>
+        <div className="w-100">
+          <Navbar userName={userName}/>
+          <Outlet/>
+        </div>
       </div>
-      <div className="w-75 bg-warning">
-        <Navbar/>
-        <Header/>
-        <Outlet/>
-      </div>
-    </div>
-
-
-
-
-     <Outlet/>
     </>
-  
   )
 }

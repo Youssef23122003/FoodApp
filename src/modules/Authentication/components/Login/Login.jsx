@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function Login() {
+export default function Login({saveLogingData}) {
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const navigate=useNavigate()
@@ -20,6 +20,8 @@ export default function Login() {
       const response = await axios.post('https://upskilling-egypt.com:3006/api/v1/Users/Login',data)
       console.log(response);
       console.log(response.data);
+      localStorage.setItem('token',response.data.token)
+      saveLogingData()
       toast.success('Successfully Signed in')
       navigate('/dashboard')
     }
